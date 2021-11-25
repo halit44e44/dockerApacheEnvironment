@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  phpapp:
+    build:
+      dockerfile: Dockerfile
+    container_name: php
+    volumes:
+      - C:\Users\user\ApacheTest:/var/www/html
+    ports:
+      - 8080:80
+    networks:
+      - agim
+
+  mysql:
+    image: mariadb
+    hostname: mysql
+    container_name: mysql
+    ports:
+      - 3307:3306
+    networks:
+      - agim
+    environment:
+      - MYSQL_ROOT_PASSWORD=polat
+
+  phpmyadmin:
+    image: phpmyadmin
+    networks:
+      - agim
+    environment:
+      - PMA_HOST=mysql
+      - PMA_ARBITRARY=1
+    ports:
+      - 9090:80
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
+networks:
+  agim:
