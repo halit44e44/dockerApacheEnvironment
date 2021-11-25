@@ -9,4 +9,3 @@ RUN pecl install mongodb
 
 RUN touch /usr/local/etc/php/conf.d/mongodb.ini
 RUN echo extension=mongodb > /usr/local/etc/php/conf.d/mongodb.ini
-
